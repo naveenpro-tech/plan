@@ -4,23 +4,22 @@ This file contains the corrected Mermaid diagrams showing the **MODULAR MONOLITH
 
 ## 1. Corrected System Architecture Overview
 
-```mermaid
 graph TB
-    subgraph "Client Layer"
-        A[React Web App<br/>Next.js 15]
-        B[Mobile Apps<br/>React Native]
-        C[Admin Panel<br/>Next.js Dashboard]
+    subgraph Client_Layer
+        A[React Web App - Next.js 15]
+        B[Mobile Apps - React Native]
+        C[Admin Panel - Next.js Dashboard]
     end
     
-    subgraph "API Gateway Layer"
-        D[AWS Application<br/>Load Balancer]
+    subgraph API_Gateway_Layer
+        D[AWS Application Load Balancer]
         E[CloudFront CDN]
     end
     
-    subgraph "MONOLITHIC FASTAPI APPLICATION"
-        F[Single FastAPI App<br/>Port 8000]
+    subgraph MONOLITHIC_FASTAPI_APPLICATION
+        F[FastAPI App - Port 8000]
         
-        subgraph "Domain Routers (In-App)"
+        subgraph Domain_Routers_In_App
             G[movies_router.py]
             H[users_router.py]
             I[critics_router.py]
@@ -31,7 +30,7 @@ graph TB
             N[quiz_router.py]
         end
         
-        subgraph "Domain Services (In-App)"
+        subgraph Domain_Services_In_App
             O[movies_service.py]
             P[users_service.py]
             Q[critics_service.py]
@@ -39,7 +38,7 @@ graph TB
             S[social_service.py]
         end
         
-        subgraph "Domain Repositories (In-App)"
+        subgraph Domain_Repositories_In_App
             T[movies_repo.py]
             U[users_repo.py]
             V[critics_repo.py]
@@ -48,16 +47,16 @@ graph TB
         end
     end
     
-    subgraph "Single Database"
-        Y[(PostgreSQL Database<br/>All Tables)]]
-        Z[(Redis Cache<br/>Sessions & Data)]
+    subgraph Single_Database
+        Y[(PostgreSQL Database)]
+        Z[(Redis Cache)]
     end
     
-    subgraph "External Integrations"
-        AA[TMDB API<br/>Movie Database]
-        BB[Gemini AI<br/>Recommendations]
-        CC[Cloudinary<br/>Image Processing]
-        DD[Email Service<br/>SendGrid]
+    subgraph External_Integrations
+        AA[TMDB API]
+        BB[Gemini AI]
+        CC[Cloudinary]
+        DD[SendGrid Email]
     end
     
     A --> D
@@ -99,9 +98,7 @@ graph TB
     P --> BB
     O --> CC
     F --> DD
-    
-    Note over F,AA: All communication within<br/>single FastAPI application
-```
+
 
 ## 2. Monolithic Backend Structure
 
